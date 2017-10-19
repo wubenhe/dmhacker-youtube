@@ -34,6 +34,8 @@ module.exports = function (term, opts, cb) {
 		//set maxResult to 5 to make sure it doesn't have channel in the result
 		opts.maxResults = 5;
 	}
+	console.log('youtube search term', term);
+	console.log('youtube search opts', opts);
 	ytsearch(term, opts, function(err, results) {
 		var tryout = 0; 
 		if(!err && results.length > 1){
