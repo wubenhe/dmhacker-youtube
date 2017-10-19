@@ -23,7 +23,7 @@ module.exports = function (term, opts, cb) {
 		opts.videoDuration = 'medium',
 		opts.maxResults = 20; 
 	}
-	else if(/^pink/.g.test(term)){
+	else if(/^pink/g.test(term)){
 		term = '兒歌';
 		opts.order = 'date';
 		opts.channelId = 'UCrLO-yoAu4ZTzRSdmWqS53A';
