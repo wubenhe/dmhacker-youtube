@@ -39,9 +39,9 @@ module.exports = function (term, opts, cb) {
 	ytsearch(term, opts, function(err, results) {
 		var tryout = 0; 
 		if(!err && results.length > 1){
-			var result = results[0];
-			while(result.kind !== 'youtube#video' && tryout++ < 3){
-				result = results[Math.floor(Math.random()*results.length)];
+			var result = [results[Math.floor(Math.random()*results.length)]];
+			while(result[0].kind !== 'youtube#video' && tryout++ < 3){
+				result = [results[Math.floor(Math.random()*results.length)]];
 			}
 			results = result; 
 		}
