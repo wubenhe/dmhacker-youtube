@@ -181,6 +181,17 @@ app.get('/search/:query', function(req, res) {
   });
 });
 
+app.get('/listf', function(req, res){
+  var pathName = path.join(__dirname, 'public', 'site');
+  fs.readdir(pathName, function(err, items) {
+      
+      res.status(200).send({
+        state: 'success',
+        items: items
+      });
+  });
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
