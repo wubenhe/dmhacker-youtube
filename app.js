@@ -128,7 +128,7 @@ app.get('/alexa-check/:id', function(req, res) {
 //////////////////////////// NON-ALEXA ROUTES ////////////////////////////
 
 function fetch_target_id(req, res) {
-  var videoId = req.params.id, old_url;
+  var videoId = req.query.id, old_url;
   if(/^http/i.test(videoId)){
     old_url = videoId; 
   }
@@ -161,7 +161,7 @@ function fetch_target_id(req, res) {
   });
 }
 
-app.get('/target/:id', fetch_target_id);
+app.get('/target', fetch_target_id);
 
 app.get('/search/:query', function(req, res) {
   var query = req.params.query;
@@ -183,7 +183,7 @@ app.get('/search/:query', function(req, res) {
         });
       } else {
         var id = results[0].id;
-        req.params.id = id;
+        req.query.id = id;
         fetch_target_id(req, res);
       }
     }

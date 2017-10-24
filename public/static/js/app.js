@@ -15,7 +15,7 @@ app.controller('ProxyController', function($scope, $http, $cookies) {
         var id = $scope.ytLink;
         $http({
             method: 'GET',
-            url: '/target/'+id
+            url: '/target/?id='+id
         }).then(function (resp) {
             if (resp.data.state === 'success') {
                 $scope.history.unshift(resp.data.info);
