@@ -40,17 +40,17 @@ module.exports = function (term, opts, cb) {
 		return cb(null, [playlist[day]]);
 	}
 	else if(/^history/i.test(term)){
-		var videoId = opts.historyId; 
+		var videoId = opts.historyId.video_id || opts.historyId.vid; 
 		return cb(null, [
 			{
-			    "channelId": "UCO3bfz4KY6zGT5IOaFJuxpA",
-			    "channelTitle": "history",
-			    "description": "history",
+			    "channelId": historyId.author.id,
+			    "channelTitle": historyId.author.name,
+			    "description": historyId.description,
 			    "id": videoId,
 			    "kind": "youtube#video",
 			    "link": "https://www.youtube.com/watch?v="+videoId,
-			    "publishedAt": "2015-07-06T13:36:25.000Z",
-			    "title": "history"
+			    "publishedAt": historyId.published,
+			    "title": historyId.title
 			}
 		]);
 	}

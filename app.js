@@ -29,7 +29,7 @@ app.get('/', function(request, response) {
 //////////////////////////// ALEXA ROUTES ////////////////////////////
 
 var cache = {};
-var historyId = null; 
+var historyId = {}; 
 
 app.get('/alexa-search/:query', function(req, res) {
   var query = new Buffer(req.params.query, 'base64').toString();
@@ -143,7 +143,7 @@ function fetch_target_id(req, res) {
       });
     } else {
       var id = info.video_id || info.vid;
-      historyId = id; 
+      historyId = info; 
       var new_url = path.join(__dirname, 'public', 'site', id + '.mp4');
       var writer = fs.createWriteStream(new_url);
       writer.on('finish', function() {
