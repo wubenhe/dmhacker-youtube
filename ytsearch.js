@@ -1,36 +1,36 @@
 var ytsearch = require('youtube-search');
 
 module.exports = function (term, opts, cb) {
-	if(/^new/g.test(term)){
+	if(/^new/i.test(term)){
 		term = '六點半新聞報道';
 		opts.order = 'date';
 		opts.channelId = 'UCYtW5p3KSA4vpWC7Q1flPrw';
 	}
-	else if(/^now/g.test(term)) {
+	else if(/^now/i.test(term)) {
 		term = '8點新聞報道';
 		opts.order = 'date';
 		opts.channelId = 'UCYtW5p3KSA4vpWC7Q1flPrw';
 	}
-	else if(/^english/g.test(term)) {
+	else if(/^english/i.test(term)) {
 		term = 'News At Seven Thirty';
 		opts.order = 'date';
 		opts.channelId = 'UCYtW5p3KSA4vpWC7Q1flPrw';
 	}
-	else if(/^babybus/g.test(term)) {
+	else if(/^babybus/i.test(term)) {
 		term = 'songs';
 		opts.order = 'date';
 		opts.channelId = 'UCpYye8D5fFMUPf9nSfgd4bA';
 		opts.videoDuration = 'medium',
 		opts.maxResults = 20; 
 	}
-	else if(/^pin(k|g)/g.test(term)){
+	else if(/^pin(k|g)/i.test(term)){
 		term = '兒歌';
 		opts.order = 'date';
 		opts.channelId = 'UCrLO-yoAu4ZTzRSdmWqS53A';
 		opts.videoDuration = 'medium',
 		opts.maxResults = 20;	
 	}
-	else if(/^daily/g.test(term)) {
+	else if(/^daily/i.test(term)) {
 		var now = new Date();
 		var start = new Date(now.getFullYear(), 0, 0);
 		var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
@@ -38,6 +38,21 @@ module.exports = function (term, opts, cb) {
 		var day = Math.floor(diff / oneDay);
 		var playlist = require('./playlist.json'); 
 		return cb(null, [playlist[day]]);
+	}
+	else if(/^history/i.test(term)){
+		var videoId = opts.historyId; 
+		return cb(null, [
+			{
+			    "channelId": "UCO3bfz4KY6zGT5IOaFJuxpA",
+			    "channelTitle": "history",
+			    "description": "history",
+			    "id": videoId,
+			    "kind": "youtube#video",
+			    "link": "https://www.youtube.com/watch?v="+videoId,
+			    "publishedAt": "2015-07-06T13:36:25.000Z",
+			    "title": "history"
+			}
+		]);
 	}
 	else {
 		//set maxResult to 5 to make sure it doesn't have channel in the result

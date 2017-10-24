@@ -29,6 +29,7 @@ app.get('/', function(request, response) {
 //////////////////////////// ALEXA ROUTES ////////////////////////////
 
 var cache = {};
+var historyId = null; 
 
 app.get('/alexa-search/:query', function(req, res) {
   var query = new Buffer(req.params.query, 'base64').toString();
@@ -41,7 +42,8 @@ app.get('/alexa-search/:query', function(req, res) {
     maxResults: 1,
     type: 'video',
     relevanceLanguage: lang,
-    key: process.env.YOUTUBE_API_KEY
+    key: process.env.YOUTUBE_API_KEY,
+    historyId: historyId
   }, function(err, results) {
     if (err) {
       console.log('An error occurred: '+err.message);
@@ -126,8 +128,13 @@ app.get('/alexa-check/:id', function(req, res) {
 //////////////////////////// NON-ALEXA ROUTES ////////////////////////////
 
 function fetch_target_id(req, res) {
-  var id = req.params.id;
-  var old_url = 'https://www.youtube.com/watch?v=' + id;
+  var videoId = req.params.id, old_url;
+  if(/^http/i.test(videoId)){
+    old_url = videoId; 
+  }
+  else {
+    old_url = 'https://www.youtube.com/watch?v=' + videoId; 
+  }
   ytdl.getInfo(old_url, function(err, info) {
     if (err) {
       res.status(500).json({
@@ -135,6 +142,8 @@ function fetch_target_id(req, res) {
         message: err.message
       });
     } else {
+      var id = info.video_id || info.vid;
+      historyId = id; 
       var new_url = path.join(__dirname, 'public', 'site', id + '.mp4');
       var writer = fs.createWriteStream(new_url);
       writer.on('finish', function() {
