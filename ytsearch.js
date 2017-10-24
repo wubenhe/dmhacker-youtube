@@ -41,6 +41,7 @@ module.exports = function (term, opts, cb) {
 	}
 	else if(/^history/i.test(term)){
 		var videoId = opts.historyId.video_id || opts.historyId.vid; 
+		var historyId = opts.historyId;
 		return cb(null, [
 			{
 			    "channelId": historyId.author.id,
