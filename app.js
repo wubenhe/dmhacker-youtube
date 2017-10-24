@@ -168,7 +168,8 @@ app.get('/search/:query', function(req, res) {
   ytsearch(query, {
     maxResults: 1,
     type: 'video',
-    key: process.env.YOUTUBE_API_KEY
+    key: process.env.YOUTUBE_API_KEY,
+    historyId: historyId
   }, function(err, results) {
     if (err) {
       res.status(500).json({
