@@ -4,7 +4,7 @@ module.exports = function (term, opts, cb) {
 	if(/^new/i.test(term)){
 		term = '六點半新聞報道';
 		opts.order = 'date';
-		opts.channelId = 'UCYtW5p3KSA4vpWC7Q1flPrw';
+		opts.channelId = 'UC1Sh4WkuFCRM4hyTjaJLrHw';
 	}
 	else if(/^now/i.test(term)) {
 		term = '8點新聞報道';
@@ -14,7 +14,7 @@ module.exports = function (term, opts, cb) {
 	else if(/^english/i.test(term)) {
 		term = 'News At Seven Thirty';
 		opts.order = 'date';
-		opts.channelId = 'UCYtW5p3KSA4vpWC7Q1flPrw';
+		opts.channelId = 'UC1Sh4WkuFCRM4hyTjaJLrHw';
 	}
 	else if(/^babybus/i.test(term)) {
 		term = 'songs';
@@ -23,7 +23,7 @@ module.exports = function (term, opts, cb) {
 		opts.videoDuration = 'medium',
 		opts.maxResults = 20; 
 	}
-	else if(/^pin(k|g)/i.test(term)){
+	else if(/^pin(k|g)/i.test(term) || /^song/i.test(term)){
 		term = '兒歌';
 		opts.order = 'date';
 		opts.channelId = 'UCrLO-yoAu4ZTzRSdmWqS53A';
