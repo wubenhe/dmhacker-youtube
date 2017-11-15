@@ -38,6 +38,31 @@ app.get('/alexa-search/:query', function(req, res) {
     lang = 'en';
   }
   console.log('Query from ' + req.connection.remoteAddress + ': '+query);
+  if(/^daily/i.test(query)){
+    var date = new Date().toISOString().split('T')[0]; 
+    var id = 'daily_'+date; 
+    var new_url = path.join(__dirname, 'public', 'site', id + '.mp3');
+    var link = 'https://traditional-odb.org/wp-content/themes/odbm-base/assets/download.php?file=https://d1qj9y79pcvssa.cloudfront.net/odb/zhy/zhy-odb-'date'.mp3';
+    ffmpeg(link)
+            .format("mp3")
+            .audioBitrate(128)
+            .on('end', function(){
+              cache[id]['downloaded'] = true;
+            })
+            .save(new_url);
+    cache[id] = { downloaded: false };
+    return res.status(200).json({
+      state: 'success',
+      message: 'Uploaded successfully.',
+      link: 
+      info: {
+        id: id,
+        title: 'Our Daily Bread '+date,
+        original: 'https://traditional-odb.org/'
+      }
+    });
+  }
+
   ytsearch(query, {
     maxResults: 1,
     type: 'video',

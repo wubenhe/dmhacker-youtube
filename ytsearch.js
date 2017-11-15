@@ -2,7 +2,7 @@ var ytsearch = require('youtube-search');
 
 module.exports = function (term, opts, cb) {
 	if(/^new/i.test(term)){
-		term = '六點半新聞報道';
+		term = '六點半新聞';
 		opts.order = 'date';
 		opts.channelId = 'UC1Sh4WkuFCRM4hyTjaJLrHw';
 	}
@@ -30,7 +30,7 @@ module.exports = function (term, opts, cb) {
 		opts.videoDuration = 'medium',
 		opts.maxResults = 20;	
 	}
-	else if(/^daily/i.test(term)) {
+	else if(/^today/i.test(term)) {
 		var now = new Date();
 		var start = new Date(now.getFullYear(), 0, 0);
 		var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
