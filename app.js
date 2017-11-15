@@ -54,7 +54,7 @@ app.get('/alexa-search/:query', function(req, res) {
     return res.status(200).json({
       state: 'success',
       message: 'Uploaded successfully.',
-      link: 
+      link: '/site/' + id + '.mp3',
       info: {
         id: id,
         title: 'Our Daily Bread '+date,
