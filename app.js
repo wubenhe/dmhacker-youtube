@@ -42,7 +42,7 @@ app.get('/alexa-search/:query', function(req, res) {
     var date = new Date().toISOString().split('T')[0]; 
     var id = 'daily_'+date; 
     var new_url = path.join(__dirname, 'public', 'site', id + '.mp3');
-    var link = 'https://traditional-odb.org/wp-content/themes/odbm-base/assets/download.php?file=https://d1qj9y79pcvssa.cloudfront.net/odb/zhy/zhy-odb-'date'.mp3';
+    var link = 'https://traditional-odb.org/wp-content/themes/odbm-base/assets/download.php?file=https://d1qj9y79pcvssa.cloudfront.net/odb/zhy/zhy-odb-'+date+'.mp3';
     ffmpeg(link)
             .format("mp3")
             .audioBitrate(128)
