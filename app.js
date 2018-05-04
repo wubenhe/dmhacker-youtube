@@ -231,7 +231,8 @@ app.get('/listf', function(req, res){
       
       res.status(200).send({
         state: 'success',
-        items: items
+        items: items, 
+        cache: cache
       });
   });
 });
