@@ -172,6 +172,7 @@ function fetch_target_id(req, res) {
       var new_url = path.join(__dirname, 'public', 'site', id + '.mp4');
       var new_url_mp3 = path.join(__dirname, 'public', 'site', id + '.mp3');
       var writer = fs.createWriteStream(new_url);
+      cache[id] = { downloaded: false };
       writer.on('finish', function() {
         ffmpeg(new_url)
           .format("mp3")
