@@ -170,8 +170,16 @@ function fetch_target_id(req, res) {
       var id = info.video_id || info.vid;
       historyId = info; 
       var new_url = path.join(__dirname, 'public', 'site', id + '.mp4');
+      var new_url_mp3 = path.join(__dirname, 'public', 'site', id + '.mp3');
       var writer = fs.createWriteStream(new_url);
       writer.on('finish', function() {
+        ffmpeg(new_url)
+          .format("mp3")
+          .audioBitrate(128)
+          .on('end', function(){
+            cache[id]['downloaded'] = true;
+          })
+          .save(new_url_mp3);
         res.status(200).json({
           state: 'success',
           link: '/site/' + id + '.mp4',
