@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Proxy server tailored to fetch youtube videos",
     "engines": {
-        "node": "5.9.1"
+        "node": "6.11.4"
     },
     "main": "app.js",
     "scripts": {
@@ -12,9 +12,10 @@
     "dependencies": {
         "ejs": "2.4.1",
         "express": "4.13.3",
-        "ytdl-core": "0.9.1",
         "fluent-ffmpeg": "2.1.0",
-        "youtube-search": "1.0.10"
+        "youtube-search": "1.0.10",
+        "ytdl": "^0.10.2",
+        "ytdl-core": "0.9.1"
     },
     "repository": {
         "type": "git",
