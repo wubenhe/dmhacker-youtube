@@ -15,7 +15,7 @@
         "fluent-ffmpeg": "2.1.0",
         "youtube-search": "1.0.10",
         "ytdl": "^0.10.2",
-        "ytdl-core": "0.9.1"
+        "ytdl-core": "^0.24.0"
     },
     "repository": {
         "type": "git",
