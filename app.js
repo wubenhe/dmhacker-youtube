@@ -162,6 +162,7 @@ function fetch_target_id(req, res) {
   }
   ytdl.getInfo(old_url, function(err, info) {
     if (err) {
+      console.log(err);
       res.status(500).json({
         state: 'error',
         message: err.message
